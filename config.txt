@@ -1,0 +1,26 @@
+# tumor DNA (original sample)
+tA1="/samples/P23993/P23993_6.1.fastq.gz"
+tA2="/samples/P23993/P23993_6.2.fastq.gz"
+
+# tumor DNA (contaminating sample)
+tB1="/samples/S2957_downsampled_full/tumor.downsampled.S2957_R1.fastq.gz"
+tB2="/samples/S2957_downsampled_full/tumor.downsampled.S2957_R2.fastq.gz"
+
+
+# normal DNA (original sample)   
+nA1="/samples/P23993/P23993_5.1.fastq.gz"
+nA2="/samples/P23993/P23993_5.1.fastq.gz"
+
+# normal DNA (contaminating sample)
+nB1="/samples/S2957_downsampled_full/normal.downsampled.S2957_R1.fastq.gz"
+nB2="/samples/S2957_downsampled_full/normal.downsampled.S2957_R2.fastq.gz"
+    
+
+# tumor RNA (original sample)
+rA1="/samples/P23993/mRNA_P23993_4.1.fastq.gz"
+rA2="/samples/P23993/mRNA_P23993_4.2.fastq.gz"
+
+# tumor RNA (contaminating sample)
+rB1="/samples/S2957_downsampled_full/rna.downsampled.S2957_R1.fastq.gz"
+rB2="/samples/S2957_downsampled_full/rna.downsampled.S2957_R2.fastq.gz"
+    

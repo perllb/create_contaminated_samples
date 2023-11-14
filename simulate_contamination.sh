@@ -154,6 +154,8 @@ create_manifest() {
 
 run() {
 
+    set -eux pipefail
+    
     set_params
     print_params
 

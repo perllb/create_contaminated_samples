@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # Simulate cross-sample contamination by creating fastq with x% reads from sample A and y% from sample by
 # Strategy: 
@@ -10,7 +10,7 @@
 # Reads from B: 4M
 
 # Get input
-usage() { echo "Usage: $0 [-p <percentage contamination to simulate>] [-r <total M reads in output fastq>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-p <percentage contamination to simulate>] [-r <total M reads in output fastq>] [config file]" 1>&2; exit 1; }
 
 while getopts ":p:r:" o; do
     case "${o}" in
@@ -154,14 +154,18 @@ create_manifest() {
 
 run() {
 
-    echo "# - conda install seqkit .."
-    conda install -c bioconda seqkit
-
     set_params
     print_params
 
     # Read config file
     . $config 
+    
+    # Install seqkit via conda, if config says so
+    if [[ $install == true ]]
+    then
+        echo "# - conda install seqkit .."
+        conda install -c bioconda seqkit
+    fi
 
     # Tumor DNA
     echo "==============================="

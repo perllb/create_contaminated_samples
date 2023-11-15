@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # Simulate cross-sample contamination by creating fastq with x% reads from sample A and y% from sample by
 # Strategy: 
@@ -10,7 +10,7 @@
 # Reads from B: 4M
 
 # Get input
-usage() { echo "Usage: $0 [-p <percentage contamination to simulate>] [-r <total M reads in output fastq>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-p <percentage contamination to simulate>] [-r <total M reads in output fastq>] [config file]" 1>&2; exit 1; }
 
 while getopts ":p:r:" o; do
     case "${o}" in
@@ -137,9 +137,9 @@ create_manifest() {
     mani="$outdir/manifest.yaml"
     echo "manifestVersion: v1alpha" > $mani
     echo "name: cont${perc}_${totreads}" >> $mani
-    echo "bed: /samples/P23993/S31285117_grch38.bed" >> $mani
-    echo "client: NOI" >> $mani
-    echo "cancer: Lung Cancer" >> $mani
+    echo "bed: $bed" >> $mani
+    echo "client: $client" >> $mani
+    echo "cancer: $cancer" >> $mani
     echo "normalReads:" >> $mani
     echo "  - C.normal.${perc}_percent_contamination.R1.fq.gz " >> $mani
     echo "  - C.normal.${perc}_percent_contamination.R2.fq.gz " >> $mani
@@ -154,14 +154,20 @@ create_manifest() {
 
 run() {
 
-    echo "# - conda install seqkit .."
-    conda install -c bioconda seqkit
-
+    set -eux pipefail
+    
     set_params
     print_params
 
     # Read config file
     . $config 
+    
+    # Install seqkit via conda, if config says so
+    if [[ $install == true ]]
+    then
+        echo "# - conda install seqkit .."
+        conda install -c bioconda seqkit
+    fi
 
     # Tumor DNA
     echo "==============================="

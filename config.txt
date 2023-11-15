@@ -1,3 +1,11 @@
+# install seqkit
+install=true
+
+# manifest text
+bed="/samples/P23993/S31285117_grch38.bed"
+client="NOI"
+cancer="Lung Cancer"
+
 # tumor DNA (original sample)
 tA1="/samples/P23993/P23993_6.1.fastq.gz"
 tA2="/samples/P23993/P23993_6.2.fastq.gz"

@@ -137,9 +137,9 @@ create_manifest() {
     mani="$outdir/manifest.yaml"
     echo "manifestVersion: v1alpha" > $mani
     echo "name: cont${perc}_${totreads}" >> $mani
-    echo "bed: /samples/P23993/S31285117_grch38.bed" >> $mani
-    echo "client: NOI" >> $mani
-    echo "cancer: Lung Cancer" >> $mani
+    echo "bed: $bed" >> $mani
+    echo "client: $client" >> $mani
+    echo "cancer: $cancer" >> $mani
     echo "normalReads:" >> $mani
     echo "  - C.normal.${perc}_percent_contamination.R1.fq.gz " >> $mani
     echo "  - C.normal.${perc}_percent_contamination.R2.fq.gz " >> $mani
